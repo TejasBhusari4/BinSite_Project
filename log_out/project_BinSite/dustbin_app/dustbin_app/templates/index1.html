@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image</title>
+    <link rel="stylesheet" href="upload-form.css">
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showPosition(position) {
+            document.getElementById('latitude').value = position.coords.latitude;
+            document.getElementById('longitude').value = position.coords.longitude;
+        }
+
+        function startCamera() {
+            const video = document.getElementById('video');
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    video.srcObject = stream;
+                    video.play();
+                })
+                .catch(function (error) {
+                    console.error('Error accessing camera:', error);
+                });
+        }
+
+        function captureImage() {
+            const canvas = document.getElementById('canvas');
+            const context = canvas.getContext('2d');
+            const video = document.getElementById('video');
+            
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            // Convert canvas image to Blob
+            canvas.toBlob(function(blob) {
+                const fileInput = document.getElementById('file');
+                const file = new File([blob], "captured-image.png", { type: "image/png" });
+                
+                // Create a DataTransfer object to mimic the file input
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+                
+                // Assign the file to the file input
+                fileInput.files = dataTransfer.files;
+            }, 'image/png');
+        }
+    </script>
+</head>
+<body onload="getLocation()">
+    <div class="container">
+        <h1>Upload Dustbin Image</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <video id="video" width="320" height="240" autoplay></video>
+            <canvas id="canvas" style="display: none;"></canvas>
+            
+            <button type="button" onclick="startCamera()">Start Camera</button>
+            <button type="button" onclick="captureImage()">Capture Image</button>
+            
+            <input type="file" id="file" name="file" style="display: none;">
+            <input type="hidden" id="latitude" name="latitude">
+            <input type="hidden" id="longitude" name="longitude">
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+</body>
+</html>

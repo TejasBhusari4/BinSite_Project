@@ -1,0 +1,245 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.container-fluid .row {
+    --bs-gutter-x: 0;
+}
+
+header {
+    background-color: #004A7C;
+    padding: 16px 80px;
+    margin: 0;
+    border-bottom: 1px solid #C1D6E4;
+}
+
+header .logo {
+    width: 167px;
+    height: 54px;
+}
+
+section {
+    padding: 60px 0;
+}
+
+section.hero {
+    padding: 0;
+    background-color: #1cc513;
+    margin: 0;
+    color: #fff;
+}
+
+section.hero .col-lg-6 {
+    height: 420px;
+}
+
+section.hero h1 {
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 60px;
+    letter-spacing: -0.48px;
+    margin-bottom: 16px;
+}
+
+section.hero .col-lg-6:first-of-type {
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+section.hero .swoosh-overlay {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+section.hero .swoosh-overlay img.main-image {
+    object-fit: cover;
+    height: 80%;
+    margin: 42px;
+    width: 534px;
+}
+
+section.hero .swoosh-overlay img.swoosh {
+    filter: invert(19%) sepia(25%) saturate(5468%) hue-rotate(184deg) brightness(99%) contrast(101%);
+    /* #004A7C */
+    height: 100%;
+    display: block
+}
+
+section.hero .swoosh-overlay img.swoosh:nth-of-type(2) {
+    margin: -420px 0 0 0;
+    width: 178px;
+}
+
+section.hero .swoosh-overlay img.swoosh:nth-of-type(3) {
+    margin: -316px 0 0 0px;
+    width: 96px;
+}
+
+section.content {
+    background-repeat: no-repeat;
+    padding-bottom: 510px;
+}
+
+section.content .wrapper {
+    margin: auto;
+    width: 800px;
+}
+
+section.content h2 {
+    color: #004A7C;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 52px;
+    letter-spacing: -0.4px;
+    margin-bottom: 32px;
+}
+
+section.content h3 {
+    color: #004A7C;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 42px;
+    margin-top: 2rem;
+}
+
+section.links .row {
+    --bs-gutter-x: 40px;
+    --bs-gutter-y: 40px;
+}
+
+section.links {
+    margin: auto;
+    width: 900px;
+}
+
+section.links h4 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    margin-top: 20px;
+}
+
+section.links .grow {
+    height: 65%;
+}
+
+section.links {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+section.links a,
+section.links a:not([href]) {
+    gap: 8px;
+    color: #D80025;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+footer {
+    background-color: #004A7C;
+    padding: 30px 80px;
+}
+
+footer .copyright {
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.p-relative {
+    position: relative;
+}
+
+a {
+    color: #004A7C;
+}
+
+/* Responsive Styles */
+
+/* Desktop */
+
+@media (min-width: 1440px) {
+    .container-fluid {
+        max-width: 1440px;
+    }
+}
+
+/* Tablet and below */
+
+@media (max-width: 992px) {
+    body,
+    section.links {
+        font-size: 14px;
+        line-height: 20px
+    }
+    section {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    section.hero h1 {
+        font-size: 32px;
+        line-height: 42px;
+    }
+    section.content {
+        padding-bottom: 0;
+    }
+    section.content h2 {
+        font-size: 28px;
+        line-height: 38px;
+    }
+    section.content h3 {
+        font-size: 24px;
+        line-height: 32px;
+    }
+    section.hero .row {
+        flex-direction: column-reverse;
+    }
+    /* nth values are reversed due to `column-reverse` being applied*/
+    section.hero .col-lg-6:nth-of-type(1) {
+        height: unset;
+    }
+    section.hero .col-lg-6:nth-of-type(2) {
+        height: 316px;
+    }
+    section.hero .col-lg-6:first-of-type {
+        padding: 30px 40px;
+    }
+    section.hero .swoosh-overlay {
+        align-items: flex-end;
+    }
+    section.content .wrapper,
+    section.links {
+        width: 100%;
+    }
+    section.content {
+        background: none;
+    }
+    section.links .grow {
+        height: unset;
+    }
+    section.links .icon {
+        display: none;
+    }
+    section.links h4 {
+        margin-top: 0;
+    }
+}
